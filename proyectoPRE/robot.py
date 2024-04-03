@@ -7,5 +7,5 @@ class robot:
     def recoger(self, item):
         self.car = item.sn
     def dejar(self, item):
-        self.car = 0;
+        self.car = 0
 
