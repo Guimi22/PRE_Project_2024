@@ -24,7 +24,6 @@ def main():
         #robotico.rect.move_ip((0, robotico.speed[0]))
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
-
         pygame.display.flip()
 
 
