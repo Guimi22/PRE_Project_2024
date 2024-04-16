@@ -17,20 +17,30 @@ def main():
     robotico = robot(20,30,344,3,3 ,3)
     clock = pygame.time.Clock()
 
-
-    while True:
+    dirx = 300
+    diry = 470
+    while robotico.rect.right < dirx:
         clock.tick(60)
-        robotico.update()
+        robotico.updateh()
+        #robotico.rect.move_ip((0, robotico.speed[0]))
+        pantalla.fill(blanco)
+        pantalla.blit(robotico.image, robotico.rect)
+        pygame.display.flip()
+    while robotico.rect.bottom < diry:
+        clock.tick(60)
+        robotico.updatev()
         #robotico.rect.move_ip((0, robotico.speed[0]))
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
         pygame.display.flip()
 
+    pantalla.blit(robotico.image, robotico.rect)
 
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
 
         pygame.display.update()
 
