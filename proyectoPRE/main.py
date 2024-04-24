@@ -26,34 +26,33 @@ def main():
     dirx = 300
     diry =200
 
+
+
     while robotico.rect.right < dirx:
         clock.tick(60)
-        robotico.updatehd()
-        #robotico.rect.move_ip((0, robotico.speed[0]))
+        robotico.mover(1)
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
         pygame.display.flip()
     while robotico.rect.right > dirx:
         clock.tick(60)
-        robotico.updatehiz()
-        #robotico.rect.move_ip((0, robotico.speed[0]))
+        robotico.mover(2)
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
         pygame.display.flip()
     while robotico.rect.bottom < diry:
         clock.tick(60)
-        robotico.updateva()
-        #robotico.rect.move_ip((0, robotico.speed[0]))
+        robotico.mover(3)
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
         pygame.display.flip()
     while robotico.rect.bottom > diry:
         clock.tick(60)
-        robotico.updatevb()
-        #robotico.rect.move_ip((0, robotico.speed[0]))
+        robotico.mover(4)
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
         pygame.display.flip()
+
 
     pantalla.blit(robotico.image, robotico.rect)
 

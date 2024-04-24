@@ -13,30 +13,57 @@ class robot(pygame.sprite.Sprite):
         self.PL = peso
         self.car = (carga1,carga2,carga3) #objetos que lleva encima (sus numeros de serie)
 
-    def updatehd(self):
-        if self.rect.left < 0 or self.rect.right > 640:
-            self.speed[0] = -self.speed[0]
-        if self.rect.top < 0 or self.rect.bottom > 480:
-            self.speed[1] = -self.speed[1]
-        self.rect.move_ip((self.speed[1], 0))
-    def updatehiz(self):
-        if self.rect.left < 0 or self.rect.right > 640:
-            self.speed[0] = -self.speed[0]
-        if self.rect.top < 0 or self.rect.bottom > 480:
-            self.speed[1] = -self.speed[1]
-        self.rect.move_ip((-self.speed[1], 0))
-    def updateva(self):
-        if self.rect.left < 0 or self.rect.right > 640:
-            self.speed[0] = -self.speed[0]
-        if self.rect.top < 0 or self.rect.bottom > 480:
-            self.speed[1] = -self.speed[1]
-        self.rect.move_ip((0, self.speed[1]))
-    def updatevb(self):
-        if self.rect.left < 0 or self.rect.right > 640:
-            self.speed[0] = -self.speed[0]
-        if self.rect.top < 0 or self.rect.bottom > 480:
-            self.speed[1] = -self.speed[1]
-        self.rect.move_ip((0, -self.speed[1]))
+    def mover (self,dir):
+        match (dir):
+            case 1:
+                if self.rect.left < 0 or self.rect.right > 640:
+                    self.speed[0] = -self.speed[0]
+                if self.rect.top < 0 or self.rect.bottom > 480:
+                    self.speed[1] = -self.speed[1]
+                self.rect.move_ip((self.speed[1], 0))
+            case 2:
+                if self.rect.left < 0 or self.rect.right > 640:
+                    self.speed[0] = -self.speed[0]
+                if self.rect.top < 0 or self.rect.bottom > 480:
+                    self.speed[1] = -self.speed[1]
+                self.rect.move_ip((-self.speed[1], 0))
+            case 3:
+                if self.rect.left < 0 or self.rect.right > 640:
+                    self.speed[0] = -self.speed[0]
+                if self.rect.top < 0 or self.rect.bottom > 480:
+                    self.speed[1] = -self.speed[1]
+                self.rect.move_ip((0, self.speed[1]))
+            case 4:
+                if self.rect.left < 0 or self.rect.right > 640:
+                    self.speed[0] = -self.speed[0]
+                if self.rect.top < 0 or self.rect.bottom > 480:
+                    self.speed[1] = -self.speed[1]
+                self.rect.move_ip((0, -self.speed[1]))
+    def ruta(self):
+        if self.rect(1) > 240:
+            diry = 450
+            while robotico.rect.bottom > diry:
+                clock.tick(60)
+                self.mover(4)
+                pantalla.fill(blanco)
+                pantalla.blit(robotico.image, robotico.rect)
+                pygame.display.flip()
+        elif self.rect(1) < 240:
+            diry = 30
+            while robotico.rect.bottom > diry:
+                clock.tick(60)
+                self.mover(4)
+                pantalla.fill(blanco)
+                pantalla.blit(robotico.image, robotico.rect)
+                pygame.display.flip()
+
+
+
+
+
+
+        pass
+
     def espera(self):
         self.rect.move_ip(0,0);
     def recoger(self, item):
