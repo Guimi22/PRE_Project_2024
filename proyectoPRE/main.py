@@ -6,6 +6,7 @@ from items import *
 import os
 
 
+
 ancho_pantalla = 640
 alto_pantalla = 480
 
@@ -21,7 +22,10 @@ def main():
     item1 = items(4, 20, 33434, 160, 300)
     clock = pygame.time.Clock()
     pantalla.blit(item1.image, item1.pos)
-
+    def actpantalla():
+        pantalla.fill(blanco)
+        pantalla.blit(robotico.image, robotico.rect)
+        pygame.display.flip()
 
     dirx = 300
     diry =200
@@ -31,27 +35,19 @@ def main():
     while robotico.rect.right < dirx:
         clock.tick(60)
         robotico.mover(1)
-        pantalla.fill(blanco)
-        pantalla.blit(robotico.image, robotico.rect)
-        pygame.display.flip()
+        actpantalla()
     while robotico.rect.right > dirx:
         clock.tick(60)
         robotico.mover(2)
-        pantalla.fill(blanco)
-        pantalla.blit(robotico.image, robotico.rect)
-        pygame.display.flip()
+        actpantalla()
     while robotico.rect.bottom < diry:
         clock.tick(60)
         robotico.mover(3)
-        pantalla.fill(blanco)
-        pantalla.blit(robotico.image, robotico.rect)
-        pygame.display.flip()
+        actpantalla()
     while robotico.rect.bottom > diry:
         clock.tick(60)
         robotico.mover(4)
-        pantalla.fill(blanco)
-        pantalla.blit(robotico.image, robotico.rect)
-        pygame.display.flip()
+        actpantalla()
 
 
     pantalla.blit(robotico.image, robotico.rect)

@@ -39,30 +39,7 @@ class robot(pygame.sprite.Sprite):
                 if self.rect.top < 0 or self.rect.bottom > 480:
                     self.speed[1] = -self.speed[1]
                 self.rect.move_ip((0, -self.speed[1]))
-    def ruta(self):
-        if self.rect(1) > 240:
-            diry = 450
-            while robotico.rect.bottom > diry:
-                clock.tick(60)
-                self.mover(4)
-                pantalla.fill(blanco)
-                pantalla.blit(robotico.image, robotico.rect)
-                pygame.display.flip()
-        elif self.rect(1) < 240:
-            diry = 30
-            while robotico.rect.bottom > diry:
-                clock.tick(60)
-                self.mover(4)
-                pantalla.fill(blanco)
-                pantalla.blit(robotico.image, robotico.rect)
-                pygame.display.flip()
 
-
-
-
-
-
-        pass
 
     def espera(self):
         self.rect.move_ip(0,0);
