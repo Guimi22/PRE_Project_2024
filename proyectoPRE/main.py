@@ -38,7 +38,7 @@ def main():
         else:
             while robotico.rect.right > x:
                 robotico.mover(2)
-                actpantalla()
+                actpantalla() 
         if robotico.rect.bottom < y:
             while robotico.rect.bottom < y:
                 robotico.mover(3)
