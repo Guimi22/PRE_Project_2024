@@ -5,52 +5,51 @@ from robot import robot
 from items import *
 import os
 
-
-
 ancho_pantalla = 640
 alto_pantalla = 480
-
 blanco = (255, 255, 255)
 
 def main():
     pygame.init()
-    pantalla = pygame.display.set_mode((ancho_pantalla, alto_pantalla))
-    pygame.display.set_caption("almacen alimentacion chino")
-    pantalla.fill(blanco)
-    robotico = robot(20,30,344,3,3 ,3)
     item1 = items(4, 20, 33434, 200, 300)
     item1 = items(4, 20, 33434, 160, 300)
+
+    pantalla = pygame.display.set_mode((ancho_pantalla, alto_pantalla))
     clock = pygame.time.Clock()
     pantalla.blit(item1.image, item1.pos)
+    pygame.display.set_caption("almacen alimentacion chino")
+    pantalla.fill(blanco)
+    robotico = robot(20, 30, 344, 3, 3, 3)
+
+    dirx = 300
+    diry =200
     def actpantalla():
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
         pygame.display.flip()
-
-    dirx = 300
-    diry =200
-
-
-
-    while robotico.rect.right < dirx:
         clock.tick(60)
-        robotico.mover(1)
-        actpantalla()
-    while robotico.rect.right > dirx:
-        clock.tick(60)
-        robotico.mover(2)
-        actpantalla()
-    while robotico.rect.bottom < diry:
-        clock.tick(60)
-        robotico.mover(3)
-        actpantalla()
-    while robotico.rect.bottom > diry:
-        clock.tick(60)
-        robotico.mover(4)
-        actpantalla()
+
+    def ruta(x, y):
+
+        if robotico.rect.right < x:
+            while robotico.rect.right < x:
+                robotico.mover(1)
+                actpantalla()
+        else:
+            while robotico.rect.right > x:
+                robotico.mover(2)
+                actpantalla()
+        if robotico.rect.bottom < y:
+            while robotico.rect.bottom < y:
+                robotico.mover(3)
+                actpantalla()
+        else:
+            while robotico.rect.bottom > y:
+                robotico.mover(4)
+                actpantalla()
 
 
-    pantalla.blit(robotico.image, robotico.rect)
+    ruta(dirx, diry)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
