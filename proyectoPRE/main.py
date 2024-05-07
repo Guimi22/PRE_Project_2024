@@ -17,12 +17,12 @@ def main():
     pantalla = pygame.display.set_mode((ancho_pantalla, alto_pantalla))
     clock = pygame.time.Clock()
     pantalla.blit(item1.image, item1.pos)
-    pygame.display.set_caption("almacen alimentacion chino")
+    pygame.display.set_caption("almacen")
     pantalla.fill(blanco)
     robotico = robot(20, 30, 344, 3, 3, 3)
 
-    dirx = 300
-    diry =200
+    dirx = 560
+    diry = 50
     def actpantalla():
         pantalla.fill(blanco)
         pantalla.blit(robotico.image, robotico.rect)
@@ -30,7 +30,22 @@ def main():
         clock.tick(60)
 
     def ruta(x, y):
+        pasa = 40
+        pasb = 440
+        print(robotico.rect.top - pasa, robotico.rect.top - pasb)
+        if (robotico.rect.top - pasa) > abs(robotico.rect.top - pasb):
+            pas = pasb
+        else:
+            pas = pasa
 
+        if robotico.rect.bottom < pas:
+            while robotico.rect.bottom < pas:
+                robotico.mover(3)
+                actpantalla()
+        else:
+            while robotico.rect.bottom > pas:
+                robotico.mover(4)
+                actpantalla()
         if robotico.rect.right < x:
             while robotico.rect.right < x:
                 robotico.mover(1)
@@ -38,7 +53,7 @@ def main():
         else:
             while robotico.rect.right > x:
                 robotico.mover(2)
-                actpantalla() 
+                actpantalla()
         if robotico.rect.bottom < y:
             while robotico.rect.bottom < y:
                 robotico.mover(3)
