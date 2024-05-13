@@ -5,8 +5,8 @@ class robot(pygame.sprite.Sprite):
     def __init__(self, peso, tamaño, carga1, carga2, carga3, direccion):
         self.image = pygame.image.load("robot-preview.png").convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.centerx = 500
-        self.rect.centery = 400
+        self.rect.centerx = 200
+        self.rect.centery = 300
         self.speed = [1, 1]
         self.TL = tamaño #limite del robot
         self.PL = peso
