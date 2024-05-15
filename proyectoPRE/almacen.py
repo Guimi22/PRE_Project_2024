@@ -16,6 +16,7 @@ class MainWindow:
         pygame.display.set_caption("Caption")
 
 
+
     def background(self):
         img = pygame.image.load("caja.png")
         self.display.blit(img, (0,0))
