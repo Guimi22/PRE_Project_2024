@@ -33,8 +33,6 @@ def main():
     robotico = robot(20, 30, 344, 3, 3, 3)
 
 
-
-
     dirx = 560
     diry = 50
 
