@@ -1,7 +1,3 @@
-import sys
-import pygame
-from pygame.locals import *
-
 from almacen import *
 from Ventana import MainWindow
 
