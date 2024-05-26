@@ -3,16 +3,16 @@ from pygame.locals import *
 import sys
 
 class items():
-    def __init__(self, peso, tamaño, serialnumber, columna, fila, stock):
-        self.W = peso
-        self.S = tamaño
+    def __init__(self, serialnumber, peso, tamano, columna, fila, stock):
         self.SN = serialnumber
-        self.pos = [columna,fila]
-        self.st = stock
+        self.W = int(peso)
+        self.S = int(tamano)
+        self.posx = int(columna)
+        self.posy = int(fila)
+        self.st = int(stock)
     def espera(self):
         self.rect.move_ip(0,0);
     def recoger(self, item):
         self.car = item.sn
     def dejar(self, item):
         self.car = 0;
-
