@@ -11,16 +11,18 @@ class MainWindow(pygame.sprite.Sprite):
         pygame.display.set_caption("Almacen")
         self.image = pygame.image.load("robot-preview.png").convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.centerx = 320
-        self.rect.centery = 240
+        self.rect.centerx = 30
+        self.rect.centery = 440
         self.speed = [1, 1]
         self.TL = tamaño  # limite del robot
         self.PL = peso
         self.car = (carga1, carga2, carga3)  # objetos que lleva encima (sus numeros de serie)
+        self.bg = pygame.image.load("almacenBG.png")
 
 
     def actpantalla(self):
         self.display.fill(blanco)
+        self.display.blit(self.bg, (0, 0))
         self.display.blit(self.image, self.rect)
         pygame.display.flip()
         clock.tick(60)
@@ -38,7 +40,7 @@ class MainWindow(pygame.sprite.Sprite):
 
     def ruta(self, x, y):
         pasa = 40
-        pasb = 440
+        pasb = 455
         if (self.rect.top - pasa) > abs(self.rect.top - pasb):
             pas = pasb
         else:
@@ -70,6 +72,9 @@ class MainWindow(pygame.sprite.Sprite):
             while self.rect.bottom > y:
                 self.mover(4)
                 self.actpantalla()
+    def background(self):
+        img = pygame.image.load("almacenBG.png")
+        self.display.blit(img, (0,0))
 
     def espera(self):
         self.rect.move_ip(0, 0);
