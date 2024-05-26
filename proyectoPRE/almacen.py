@@ -1,9 +1,9 @@
 import sys
 import pygame
 from pygame.locals import *
-from robot import robot
+
 from items import *
-from robot import *
+from Ventana import *
 import os
 
 pygame.init()
@@ -69,12 +69,5 @@ class Almacen:
         return list_stock
 
 
-    def background(self):
-        img = pygame.image.load("caja.png")
-        self.display.blit(img, (0,0))
-    def actpantalla(self):
-        self.display.fill(blanco)
-        self.display.blit(robotico.image, robotico.rect)
-        pygame.display.flip()
-        clock.tick(60)
+
 
