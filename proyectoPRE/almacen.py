@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 
 from items import *
-from Ventana import *
+
 import os
 
 pygame.init()
