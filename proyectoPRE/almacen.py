@@ -1,9 +1,9 @@
 import sys
 import pygame
 from pygame.locals import *
-from robot import robot
+
 from items import *
-from robot import *
+from Ventana import *
 import os
 
 pygame.init()
