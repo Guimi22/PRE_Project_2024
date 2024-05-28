@@ -1,4 +1,6 @@
 import pygame
+import time
+import almacen
 from pygame.locals import *
 blanco = (255, 255, 255)
 clock = pygame.time.Clock()
@@ -26,6 +28,7 @@ class MainWindow(pygame.sprite.Sprite):
         self.display.blit(self.image, self.rect)
         pygame.display.flip()
         clock.tick(60)
+
 
     def mover(self, dir):
         match (dir):
@@ -75,12 +78,15 @@ class MainWindow(pygame.sprite.Sprite):
     def background(self):
         img = pygame.image.load("almacenBG.png")
         self.display.blit(img, (0,0))
+    def home(self):
+        self.ruta(50, 440)
+    def puerta(self):
+        self.ruta(625,240)
 
-    def espera(self):
+    def recoger(self):
         self.rect.move_ip(0, 0);
-
-    def recoger(self, item):
-        self.car = item.sn
+        time.sleep(1)
 
     def dejar(self, item):
         self.car = 0;
+
