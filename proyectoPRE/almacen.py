@@ -9,10 +9,10 @@ import os
 pygame.init()
 
 class Almacen:
-    def __init__(self, rows, columns, vector):
+    def __init__(self, rows, columns, diccionario):
         self.rows = rows
         self.columns = columns
-        self.items = vector
+        self.items = diccionario
 
     def funct_read_excel(self, filename):
         with open(filename, mode='r') as f:
@@ -37,7 +37,9 @@ class Almacen:
             posx_aux = item_in_almacen.posx
             posy_aux = item_in_almacen.posy
             long = len(order_new)
-            if posx_aux < order_new[long-1]:
+            if long == 0:
+                order_new = [item]
+            elif posx_aux < order_new[long-1]:
                 order_new[long + 1] = order_new[long]
                 order_new[long] = item
             else:
@@ -52,14 +54,16 @@ class Almacen:
         list_stock = self.funct_read_excel(filename)
         item_str = 'item'
         for item in list_stock:
-            item_in_almacen = self.find_item(item[0])
-            if item_in_almacen == 0:
-                num = str(len(self.items))
-                var_name_aux = item_str + num
-                globals()[var_name_aux] = items(item[0], item[1], item[2], item[3], item[4], item[5])
-                self.update_almacen(globals()[var_name_aux])
-            else:
-                item_in_almacen.st = item_in_almacen.st + int(item[len(item) - 1])
+            #item_in_almacen = self.find_item(item[0])
+            #if item_in_almacen == 0:
+            num = str(len(self.items))
+            var_name_aux = item_str + num
+            globals()[var_name_aux] = items(item[0], item[1], item[2], item[3], item[4], item[5])
+            dicc_item = globals()[var_name_aux].diccionario_item()
+            self.items = self.items | dicc_item
+            #self.update_almacen(globals()[var_name_aux])
+            # else:
+            #     item_in_almacen.st = item_in_almacen.st + int(item[len(item) - 1])
         return list_stock
 
     def update_almacen(self,varname):
