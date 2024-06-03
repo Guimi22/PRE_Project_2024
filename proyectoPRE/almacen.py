@@ -33,21 +33,25 @@ class Almacen:
         order = self.funct_read_excel(filename)
         order_new = []
         for item in order:
-            item_in_almacen = self.find_item(item[0])
-            posx_aux = item_in_almacen.posx
-            posy_aux = item_in_almacen.posy
+            #item_in_almacen = self.find_item(item[0])
+            posx_aux = self.items[item[0]][2]
+            posy_aux = self.items[item[0]][3]
             long = len(order_new)
             if long == 0:
-                order_new = [item]
-            elif posx_aux < order_new[long-1]:
-                order_new[long + 1] = order_new[long]
-                order_new[long] = item
+                order_new = [[posx_aux, posy_aux]]
             else:
-                if posy_aux < order_new[long]:
-                    order_new[long + 1] = order_new[long]
-                    order_new[long] = item
+                closer_item_x = order_new[0][0]
+                closer_item_y = order_new[0][1]
+                if posx_aux < closer_item_x:
+                    order_new = [0, order_new]
+                    order_new[0] = [posx_aux, posy_aux]
                 else:
-                    order_new.append(item)
+                    if posy_aux < closer_item_y:
+                        #order_new[long + 1] = order_new[long]
+                        #order_new[long] = item
+                        order_new.append([posx_aux, posy_aux])
+                    else:
+                        order_new.append([posx_aux, posy_aux])
         return order_new
 
     def update_stock(self, filename):
@@ -70,6 +74,7 @@ class Almacen:
         self.items.append(varname)
 
     def find_item(self,serial_num):
+
         for item in self.items:
             if item.SN == serial_num:
                 return item

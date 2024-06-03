@@ -18,7 +18,8 @@ def main():
     #prova1 = A.find_item('55572f')
     prova2 = A.items
     print(prova2)
-    #comanda = A.arange_order('Libro2.csv')
+    comanda = A.arange_order('Libro2.csv')
+    print(comanda)
 
     # for item in comanda:
     #     MainWindow.ruta(p, item[0], item[1])
