@@ -4,8 +4,8 @@ import sys
 
 class items():
     def __init__(self, serialnumber, peso, tamano, columna, fila, stock):
-        self.columnas = {'A': 5, 'B': 10, 'C': 15}
-        self.filas = {'1': 5, '2': 10, '3': 15, '4': 20}
+        self.columnas = {'A': 75, 'B': 200, 'C': 320, 'D':460, 'E':560}
+        self.filas = {'1': 400, '2': 320, '3': 240, '4': 160, '5':80}
         self.SN = serialnumber
         self.W = int(peso)
         self.S = int(tamano)

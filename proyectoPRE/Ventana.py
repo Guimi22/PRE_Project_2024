@@ -4,6 +4,7 @@ import almacen
 from pygame.locals import *
 blanco = (255, 255, 255)
 clock = pygame.time.Clock()
+Cnum = 0
 
 class MainWindow(pygame.sprite.Sprite):
     def __init__(self, width, height, peso, tamaño, carga1, carga2, carga3):
@@ -20,7 +21,7 @@ class MainWindow(pygame.sprite.Sprite):
         self.PL = peso
         self.car = (carga1, carga2, carga3)  # objetos que lleva encima (sus numeros de serie)
         self.bg = pygame.image.load("almacenBG.png")
-
+    Cnum = 0
 
     def actpantalla(self):
         self.display.fill(blanco)
@@ -82,11 +83,30 @@ class MainWindow(pygame.sprite.Sprite):
         self.ruta(50, 440)
     def puerta(self):
         self.ruta(625,240)
-
-    def recoger(self):
+    def recoger(self,Cnum):
+        self.cambio_cajas(Cnum)
         self.rect.move_ip(0, 0);
-        time.sleep(1)
+        time.sleep(0.5)
+    def dejar(self):
+        time.sleep(0.5)
+        self.image = pygame.image.load("robot2caja.png").convert_alpha()
+        time.sleep(0.5)
+        self.image = pygame.image.load("robot1caja.png").convert_alpha()
+        time.sleep(0.5)
+        self.image = pygame.image.load("robot-preview.png").convert_alpha()
+        time.sleep(0.5)
 
-    def dejar(self, item):
-        self.car = 0;
+
+    def cambio_cajas(self,N):
+        match (N):
+            case 0:
+                self.image = pygame.image.load("robot-preview.png").convert_alpha()
+            case 1:
+                self.image = pygame.image.load("robot1caja.png").convert_alpha()
+            case 2:
+                self.image = pygame.image.load("robot2caja.png").convert_alpha()
+            case 3:
+                self.image = pygame.image.load("robot3cajas.png").convert_alpha()
+
+
 
