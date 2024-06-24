@@ -20,6 +20,7 @@ def main():
     print(prova2)
     #print(prova2['5433fg'][2])
     prova3 = A.funct_read_excel('Libro2.csv')
+    print(prova3)
     comanda, comanda_snqty = A.arange_order('Libro2.csv')
     print(comanda, comanda_snqty)
     # i = 0

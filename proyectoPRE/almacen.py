@@ -33,8 +33,8 @@ class Almacen:
     def arange_order(self, filename):
         order = self.funct_read_excel(filename)
         order_new = []
-        #order_new_snqty = []
-        lista_aux1 = []
+        order_new_snqty = []
+
         for item in order:
             #item_in_almacen = self.find_item(item[0])
             posx_aux = self.items[item[0]][2]
@@ -56,17 +56,23 @@ class Almacen:
                     if posx_aux < closer_item_x:
                         order_new.insert(i-1, lista_aux1)
                         order_new_snqty.insert(i-1, lista_aux2)
+                        break
                     elif posx_aux == closer_item_x:
                         if posy_aux < closer_item_y:
                             order_new.insert(i-1, lista_aux1)
                             order_new_snqty.insert(i-1, lista_aux2)
+                            break
                         else:
                             order_new.insert(i, lista_aux1)
-                            order_new_snqty.insert(i, lista_aux1)
+                            order_new_snqty.insert(i, lista_aux2)
+                            break
                     else:
                         if i == long:
                             order_new.append(lista_aux1)
                             order_new_snqty.append(lista_aux2)
+                            break
+                        else:
+                            break
         return order_new, order_new_snqty
 
     def update_stock(self, filename):
