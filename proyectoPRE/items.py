@@ -30,6 +30,9 @@ class items():
         vector_aux = [self.W, self.S, self.posx, self.posy, self.st, self.name]
         dicc = {self.SN: vector_aux}
         return dicc
-    def update_stock_item(self,quantity):
-        self.st = self.st - int(quantity)
+    def update_stock_item(self, quantity, operation):
+        if operation == 0:
+            self.st = self.st - int(quantity)
+        else:
+            self.st = self.st + int(quantity)
         return self.diccionario_item()

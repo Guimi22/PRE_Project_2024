@@ -5,7 +5,7 @@ from Ventana import MainWindow
 
 ancho_pantalla = 640
 alto_pantalla = 480
-ini =(50,440)
+ini = (50, 440)
 blanco = (255, 255, 255)
 i = 0
 def main():
@@ -15,6 +15,8 @@ def main():
     diccionario = {}
     A = Almacen(3,4,diccionario)
     prova = A.update_stock('Libro1.csv')
+    valor = A.find_item('553f')
+    print(valor)
     # #prova1 = A.find_item('55572f')
     # prova2 = A.items
     # print(prova2)
@@ -22,7 +24,7 @@ def main():
     # prova3 = A.funct_read_excel('Libro2.csv')
     # print(prova3)
     comanda,comanda_snqty = A.arange_order('Libro2.csv')
-    # print(comanda, comandasnqty)
+    print(comanda, comanda_snqty)
 
     # order = A.funct_read_excel('Libro2.csv')
     # item_positions = {}
@@ -49,7 +51,7 @@ def main():
         i += 1
         MainWindow.ruta(p, item[0], item[1])
         MainWindow.recoger(p, i)
-        A.update_items(comanda_snqty[i-1][0], comanda_snqty[i-1][1])
+        A.update_items(comanda_snqty[i-1][0], comanda_snqty[i-1][1], 0)
         print(A.items)
     MainWindow.puerta(p)
     MainWindow.dejar(p)
@@ -59,7 +61,6 @@ def main():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-
 
         pygame.display.update()
 

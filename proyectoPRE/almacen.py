@@ -15,6 +15,8 @@ class Almacen:
         self.columns = columns
         self.items = diccionario
 
+    #funct_read_excel(self, filename) --> Método de la clase almacen que se usa para la lectura de los ficheros .csv que
+    #devuelven una lista de listas, con los valores de cada celda por fila.
     def funct_read_excel(self, filename):
         with open(filename, mode='r') as f:
             list_excel = []
@@ -74,6 +76,9 @@ class Almacen:
     #                         break
     #     return order_new, order_new_snqty
 
+    #distance(self, pos1, pos2) --> Método de la clase almcen que devuelve el módulo del vector que va de pos1 a pos2; es
+    # decir, la distancia entre los dos puntos. Se utiliza en la función arange_order(self, filename) para definir el orden de
+    #la comanda.
     def distance(self, pos1, pos2):
         return math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2)
 
@@ -142,33 +147,34 @@ class Almacen:
                 iter_finish = 0
         return order_route, order_snqty
 
+    #update_stock(self, filename) --> Metodo
     def update_stock(self, filename):
         list_stock = self.funct_read_excel(filename)
         item_str = 'item'
         for item in list_stock:
-            #item_in_almacen = self.find_item(item[0])
-            #if item_in_almacen == 0:
-            num = str(len(self.items))
-            var_name_aux = item_str + num
-            globals()[var_name_aux] = items(item[0], item[1], item[2], item[3], item[4], item[5], var_name_aux)
-            dicc_item = globals()[var_name_aux].diccionario_item()
-            self.items = self.items | dicc_item
+            item_in_almacen = self.find_item(item[0])
+            if item_in_almacen == 0:
+                num = str(len(self.items))
+                var_name_aux = item_str + num
+                globals()[var_name_aux] = items(item[0], item[1], item[2], item[3], item[4], item[5], var_name_aux)
+                dicc_item = globals()[var_name_aux].diccionario_item()
+                self.items = self.items | dicc_item
             #self.update_almacen(globals()[var_name_aux])
-            # else:
-            #     item_in_almacen.st = item_in_almacen.st + int(item[len(item) - 1])
+            else:
+                self.update_items(item_in_almacen, item[5], 1)
         return list_stock
 
-    def update_almacen(self,varname):
+    def update_almacen(self, varname):
         self.items.append(varname)
 
-    def find_item(self,serial_num):
+    def find_item(self, serial_num):
         #Cal definir una funcio que si existeix item amb la clau del SN retorni un boolean i si no gestioni l'error per retornar un boolean igual
         for item in self.items:
-            if item.SN == serial_num:
+            if item == serial_num:
                 return item
-            else:
-                return 0
+        return 0
 
-    def update_items(self, serialnum, quantity):
-        new_dicc = globals()[self.items[serialnum][5]].update_stock_item(quantity)
+
+    def update_items(self, serialnum, quantity, operation):
+        new_dicc = globals()[self.items[serialnum][5]].update_stock_item(quantity, operation)
         self.items[serialnum] = new_dicc[serialnum]
