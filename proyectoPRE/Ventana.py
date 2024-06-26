@@ -21,7 +21,7 @@ class MainWindow(pygame.sprite.Sprite):
         self.bg = pygame.image.load("almacenBG.png")
     Cnum = 0
 
-    # Funcion para la catualizacion del fondo y el sprite
+    # Funcion para la actualizacion del fondo y el sprite
     def actpantalla(self):
         self.display.fill(blanco)
         self.display.blit(self.bg, (0, 0))

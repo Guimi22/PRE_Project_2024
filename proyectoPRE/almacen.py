@@ -2,9 +2,6 @@
 from items import *
 import math
 
-
-pygame.init()
-
 class Almacen:
     def __init__(self, rows, columns, diccionario):
         self.rows = rows
@@ -33,16 +30,15 @@ class Almacen:
     def distance(self, pos1, pos2):
         return math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2)
 
-
-
+    #arange_order(filename) --> Metodo de la clase almacen que dado un fichero .csv de una comanda, devuelve dos listas
+    #de listas de la posicion en el almacen y el numero de serie y cantidad por cada item, que han sido ordenadas segun
+    #un algoritmo que tiene en cuenta la distancia desde el robot y el item ademas del peso.
     def arange_order(self, filename):
         order = self.funct_read_excel(filename)
         item_positions = {}
         for item in order:
             item_positions[item[0]] = [self.items[item[0]][2], self.items[item[0]][3]], self.items[item[0]][1], [item[0], item[1]]
-        # item_weights = {item[0]: self.items[item[0]][1] for item in order}
         position = [50, 440]
-        # funcion que devuelva posicion actual del robot en el almacen
         iter_finish = 1
         weighted_distances = []
         order_route = []
@@ -82,13 +78,16 @@ class Almacen:
                 self.update_items(item_in_almacen, item[5], 1)
         return list_stock
 
-
+    #find_item(serial_num) --> Metodo que comprueva si exista ya un item del excel para actualizar el stock del almacen.
+    #Devuelve un 0 si no existe aun ese item en el almcen y si por lo contrario, ya esta registrado en el almacen,
+    #devuelve el serial number
     def find_item(self, serial_num):
         for item in self.items:
             if item == serial_num:
                 return item
         return 0
 
+    #update_items(serial_num, quantity, operation) --> Metodo que actualiza el stock del almacen.
     def update_items(self, serialnum, quantity, operation):
         new_dicc = globals()[self.items[serialnum][5]].update_stock_item(quantity, operation)
         self.items[serialnum] = new_dicc[serialnum]

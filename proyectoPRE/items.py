@@ -10,22 +10,25 @@ class items():
         self.st = int(stock)
         self.name = varname
 
-    def espera(self):
-        self.rect.move_ip(0,0);
-    def recoger(self, item):
-        self.car = item.sn
-    def dejar(self, item):
-        self.car = 0
+    #posicion_x(columna) --> Metodo que devuelve la coordenada en el eje horizontal de la pantalla de cada columna.
     def posicion_x(self,columna):
         valor = self.columnas[columna]
         return valor
+
+    #posicion_y(fila) --> Metodo que devuelve la coordenada en el eje vertical de la pantalla de las filas de cada columna.
     def posicion_y(self,fila):
         valor = self.filas[fila]
         return valor
+
+    #diccionario_item() --> Metodo que devuelve un diccionario con clave el numero de serie y de valor una lista con los
+    #atributos de cada objeto dentro de la clases items.
     def diccionario_item(self):
         vector_aux = [self.W, self.S, self.posx, self.posy, self.st, self.name]
         dicc = {self.SN: vector_aux}
         return dicc
+
+    #update_stock_item(cantidad, operacion) --> Metodo que actualiza el stock de un item en el almacen segun el robot lo
+    #recoja o deje en la estanteria.
     def update_stock_item(self, quantity, operation):
         if operation == 0:
             self.st = self.st - int(quantity)
