@@ -1,7 +1,3 @@
-import pygame
-from pygame.locals import *
-import sys
-
 class items():
     def __init__(self, serialnumber, peso, tamano, columna, fila, stock, varname):
         self.columnas = {'A': 75, 'B': 200, 'C': 320, 'D':460, 'E':560}
