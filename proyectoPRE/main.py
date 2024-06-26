@@ -26,6 +26,10 @@ def main():
         MainWindow.recoger(p, i)
         A.update_items(comanda_snqty[i-1][0], comanda_snqty[i-1][1], 0)
         print(A.items)
+        if i%3 == 0:
+            MainWindow.puerta(p)
+            MainWindow.dejar(p)
+            MainWindow.home(p)
     MainWindow.puerta(p)
     MainWindow.dejar(p)
     MainWindow.home(p)
