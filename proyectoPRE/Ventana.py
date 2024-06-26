@@ -107,6 +107,3 @@ class MainWindow(pygame.sprite.Sprite):
                 self.image = pygame.image.load("robot2caja.png").convert_alpha()
             case 3:
                 self.image = pygame.image.load("robot3cajas.png").convert_alpha()
-
-
-

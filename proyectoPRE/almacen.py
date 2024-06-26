@@ -147,7 +147,8 @@ class Almacen:
                 iter_finish = 0
         return order_route, order_snqty
 
-    #update_stock(self, filename) --> Metodo
+    #update_stock(self, filename) --> Metodo que actualiza el stock de items en el almacen a partir de un fichero con
+    #el número de serie, el peso, el tamaño, la posición en el almacén y la cantidad de items.
     def update_stock(self, filename):
         list_stock = self.funct_read_excel(filename)
         item_str = 'item'
@@ -159,21 +160,16 @@ class Almacen:
                 globals()[var_name_aux] = items(item[0], item[1], item[2], item[3], item[4], item[5], var_name_aux)
                 dicc_item = globals()[var_name_aux].diccionario_item()
                 self.items = self.items | dicc_item
-            #self.update_almacen(globals()[var_name_aux])
             else:
                 self.update_items(item_in_almacen, item[5], 1)
         return list_stock
 
-    def update_almacen(self, varname):
-        self.items.append(varname)
 
     def find_item(self, serial_num):
-        #Cal definir una funcio que si existeix item amb la clau del SN retorni un boolean i si no gestioni l'error per retornar un boolean igual
         for item in self.items:
             if item == serial_num:
                 return item
         return 0
-
 
     def update_items(self, serialnum, quantity, operation):
         new_dicc = globals()[self.items[serialnum][5]].update_stock_item(quantity, operation)
